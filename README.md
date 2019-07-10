@@ -1,2 +1,2 @@
 # CannyEdge
-Canny Edge Detector
+Canny Edge Detector in Python from scatch
