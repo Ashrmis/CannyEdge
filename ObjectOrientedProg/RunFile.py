@@ -4,11 +4,9 @@ from scipy import signal
 from matplotlib import pyplot as plt
 from PIL import Image
 import PIL
-img = cv2.imread(r'C:\Users\Ashish\Desktop\Graduate School\Study\images')
-
 import os, os.path
 images=[]
-path= r'C:\Users\Ashish\Desktop\Graduate School\Study\images'
+path= r'C:PATH_HERE'
 imagetypes=['.jpg','.png','.jpeg']
 
 for f in os.listdir(path):
