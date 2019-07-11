@@ -2,7 +2,7 @@ import CannyEdgeDetector_OOP as CED
 import cv2
 from scipy import signal
 from matplotlib import pyplot as plt
-img = cv2.imread(r'C\PATH\')
+img = cv2.imread(r'C\PATH_GOES_HERE\')
 RGB_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 grayImage=cv2.cvtColor(RGB_img, cv2.COLOR_RGB2GRAY)
 

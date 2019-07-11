@@ -10,7 +10,7 @@ class cannyedge:
         self.sigma=sigma
         self.image=image
         self.weakpix=weakpix
-        self.strongpix=strongpix
+        self.strongpix=strongpix# d
         self.lowthresh=lowthresh
         self.highthresh=highthresh
         
