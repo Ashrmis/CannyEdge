@@ -1,6 +1,7 @@
 # Canny Edge Operator Object Oriented Programming
 import numpy as np
 from scipy import signal
+import cv2
 
 class cannyedge:
     def __init__(self,image,size,sigma,weakpix,strongpix,lowthresh,highthresh):
@@ -37,7 +38,6 @@ class cannyedge:
         Iy=signal.convolve2d(smoothed_image,Gy)
         
         magnitude=np.sqrt(Ix**2+Iy**2)
-        orgmag=magnitude
         magnitude=magnitude/magnitude.max() *255
         direction=np.arctan2(Iy,Ix)
     
@@ -121,12 +121,19 @@ class cannyedge:
         return img
         
     def detect(self):
-        img_final=[]
-        self.img_smoothed=signal.convolve2d(self.imgs,self.gaussian_kernel(self.size,self.sigma))
-        self.gradientMat,self.thetaMat=self.sobelfilter(self.img_smoothed)
-        self.nonMaxImg=self.non_maxsup(self.gradientMat,self.thetaMat)
-        self.thresholding=self.threshold(self.nonMaxImg)
-        img_final=self.hysteresis(self.thresholding)
-        self.img_final=img_final
-        return self.img_final
+        
+        for i in self.imgs:
+            image=i
+            image=np.asarray(i)
+            grayImage=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            self.img_smoothed=signal.convolve2d(grayImage,self.gaussian_kernel(self.size,self.sigma))
+            self.gradientMat,self.thetaMat=self.sobelfilter(self.img_smoothed)
+            self.nonMaxImg=self.non_maxsup(self.gradientMat,self.thetaMat)
+            self.thresholding=self.threshold(self.nonMaxImg)
+            img_final=self.hysteresis(self.thresholding)
+            
+            self.img_final=img_final
+            self.imgs_final.append(self.img_final)
+            
+        return self.imgs_final
 
